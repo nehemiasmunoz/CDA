@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 
-class ActivitiesPage extends StatelessWidget {
-  const ActivitiesPage({Key? key}) : super(key: key);
+class TypeLearningScreen extends StatelessWidget {
+  const TypeLearningScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
         child: Center(
-          child: Text('Activities Screen'),
+          child: Text('Type Learning'),
         ),
       ),
     );

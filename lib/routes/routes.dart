@@ -1,14 +1,14 @@
+import 'package:centro_actividades/screen/activities/activities_screen.dart';
+import 'package:centro_actividades/screen/assignments/assignments_screen.dart';
+import 'package:centro_actividades/screen/login/login_screen.dart';
+import 'package:centro_actividades/screen/typeLearning/typeLearning_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:centro_actividades/pages/activities/activities_page.dart';
-import 'package:centro_actividades/pages/assignments/assignments_page.dart';
-import 'package:centro_actividades/pages/typeLearning/typeLearning_page.dart';
-import 'package:centro_actividades/pages/login/login_page.dart';
 
 Map<String, WidgetBuilder> getAplicationRoutes() {
   return <String, WidgetBuilder>{
-    'login': (BuildContext context) => LoginPage(),
-    'assignments': (BuildContext context) => AssignmentsPage(),
-    'typeLearning': (BuildContext context) => TypeLearningPage(),
-    'activities': (BuildContext context) => ActivitiesPage(),
+    'login': (BuildContext context) => LoginScreen(),
+    'assignments': (BuildContext context) => AssignmentsScreen(),
+    'typeLearning': (BuildContext context) => TypeLearningScreen(),
+    'activities': (BuildContext context) => ActivitiesScreen(),
   };
 }
