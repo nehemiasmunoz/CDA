@@ -1,3 +1,4 @@
+import 'package:centro_actividades/screen/activities/templates/basic_activity_template.dart';
 import 'package:flutter/material.dart';
 
 class ActivitiesScreen extends StatelessWidget {
@@ -6,11 +7,16 @@ class ActivitiesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        child: Center(
-          child: Text('Activities Screen'),
-        ),
+      appBar: AppBar(
+        title: Text('Actividades'),
+        actions: [
+          IconButton(
+            onPressed: () {},
+            icon: Icon(Icons.reorder),
+          )
+        ],
       ),
+      body: BasicActivity(),
     );
   }
 }

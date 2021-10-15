@@ -40,7 +40,9 @@ class LoginScreen extends StatelessWidget {
                         'Ingresar',
                         style: TextStyle(color: Colors.white, fontSize: 16.0),
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.pushNamed(context, 'activities');
+                      },
                     ),
                   ),
                 ],
