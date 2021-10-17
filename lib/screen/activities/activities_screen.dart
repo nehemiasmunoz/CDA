@@ -1,11 +1,12 @@
 import 'dart:ui';
-
+import 'package:centro_actividades/screen/activities/models/logic/basic_activity_brain.dart';
 import 'package:centro_actividades/utils/constant.dart';
 import 'package:flutter/material.dart';
-import 'package:centro_actividades/screen/activities/preview_activity_model.dart';
 
 class ActivitiesScreen extends StatelessWidget {
-  const ActivitiesScreen({Key? key}) : super(key: key);
+  ActivitiesScreen({Key? key}) : super(key: key);
+
+  BasicActivityBrain basicActivity = BasicActivityBrain();
 
   @override
   Widget build(BuildContext context) {
@@ -21,9 +22,13 @@ class ActivitiesScreen extends StatelessWidget {
         ],
       ),
       body: ListView.builder(
-        itemCount: PreviewActivityModel.samples.length,
+        itemCount: basicActivity.getLength(),
         itemBuilder: (BuildContext context, index) {
-          return _buildCard(size: size, index: index);
+          return _buildCard(
+            size: size,
+            index: index,
+            data: basicActivity.getPreview(index),
+          );
         },
       ),
     );
@@ -35,17 +40,19 @@ class _buildCard extends StatelessWidget {
     Key? key,
     required this.size,
     required this.index,
+    required this.data,
   }) : super(key: key);
 
   final Size size;
   final int index;
+  final List data;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
         print(
-          PreviewActivityModel.samples[index].name,
+          data[0],
         );
       },
       child: Card(
@@ -55,37 +62,51 @@ class _buildCard extends StatelessWidget {
         margin: EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),
         child: Container(
           decoration: BoxDecoration(
-              borderRadius: BorderRadius.all(Radius.circular(20.0)),
-              gradient:
-                  LinearGradient(colors: [kPrimaryColor, kPrimaryLightColor])),
+            borderRadius: BorderRadius.all(Radius.circular(20.0)),
+            gradient: LinearGradient(
+              colors: [kPrimaryColor, kPrimaryLightColor],
+            ),
+          ),
           padding: EdgeInsets.all(10.0),
           width: size.width * 1,
           height: size.height * 0.2,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.end,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                //TODO: remplazar con nombre de la actividad
-                PreviewActivityModel.samples[index].name,
-                style: TextStyle(
-                  fontSize: 20.0,
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              Text(
-                //TODO: remplazar con descripcion de la actividad
-                PreviewActivityModel.samples[index].description,
-                style: TextStyle(
-                  fontSize: 13.0,
-                  color: Colors.white,
-                ),
-              ),
-            ],
-          ),
+          child: _buildContent(data: data),
         ),
       ),
+    );
+  }
+}
+
+class _buildContent extends StatelessWidget {
+  const _buildContent({
+    Key? key,
+    required this.data,
+  }) : super(key: key);
+
+  final List data;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.end,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          data[0],
+          style: TextStyle(
+            fontSize: 20.0,
+            color: Colors.white,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        Text(
+          data[1],
+          style: TextStyle(
+            fontSize: 13.0,
+            color: Colors.white,
+          ),
+        ),
+      ],
     );
   }
 }
