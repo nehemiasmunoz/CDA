@@ -13,12 +13,13 @@ class MyApp extends StatelessWidget {
       initialRoute: 'login',
       routes: getAplicationRoutes(),
       theme: ThemeData.light().copyWith(
-          primaryColor: kPrimaryColor,
-          appBarTheme: AppBarTheme(
-            color: kPrimaryColor,
-            elevation: 0,
-            centerTitle: true,
-          )),
+        primaryColor: kPrimaryColor,
+        appBarTheme: AppBarTheme(
+          color: kPrimaryColor,
+          elevation: 0,
+          centerTitle: true,
+        ),
+      ),
     );
   }
 }

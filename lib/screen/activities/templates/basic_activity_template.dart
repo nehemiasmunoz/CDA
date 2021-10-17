@@ -15,10 +15,33 @@ class BasicActivity extends StatelessWidget {
           width: size.width * 1,
           child: Column(
             children: [
-              Text('Activity title'),
+              Text(
+                //TODO: remplazar con titulo de actividad bd
+                'Activity title'.toUpperCase(),
+                style: TextStyle(
+                  fontSize: 14.0,
+                  fontWeight: FontWeight.bold,
+                  leadingDistribution: TextLeadingDistribution.proportional,
+                ),
+              ),
+              //TODO: enviar tipos de aprendizajes que acepta la actividad
               EvidenceTypeBar(),
               Card(
-                child: Text('Card Contenido'),
+                child: Container(
+                  width: size.width * 1,
+                  child: Column(
+                    children: [
+                      // TODO: Falta crear estructura del contenido
+                      Text('Card Contenido'),
+                    ],
+                  ),
+                ),
+              ),
+              OutlinedButton.icon(
+                // permitira agregar la actividad actual a una lista de actividades pendientes
+                onPressed: () {},
+                icon: Icon(Icons.add),
+                label: Text('Agregar a la lista'),
               )
             ],
           ),
