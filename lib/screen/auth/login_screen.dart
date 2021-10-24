@@ -41,7 +41,7 @@ class LoginScreen extends StatelessWidget {
                         style: TextStyle(color: Colors.white, fontSize: 16.0),
                       ),
                       onPressed: () {
-                        Navigator.pushNamed(context, 'activities');
+                        Navigator.pushNamed(context, 'assignments');
                       },
                     ),
                   ),
