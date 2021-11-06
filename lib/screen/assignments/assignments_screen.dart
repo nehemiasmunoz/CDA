@@ -47,7 +47,7 @@ class _AssignmentCard extends StatelessWidget {
       },
       child: Container(
         height: size.height * 0.14,
-        margin: EdgeInsets.symmetric(vertical: 5.0, horizontal: 10.0),
+        margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(5.0),
             image: DecorationImage(
