@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "229177053850",
+    "project_id": "cda-centrodeactividades",
+    "storage_bucket": "cda-centrodeactividades.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:229177053850:android:bd771a4ddcfec1d7528523",
+        "android_client_info": {
+          "package_name": "com.innted.centro_actividades"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "229177053850-bbq8p58p88n4pl3ilsmevc0g5lhmk26v.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAXkbX_BJEUA0LFt2-iBMjY2JQlaZ3T7jg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "229177053850-bbq8p58p88n4pl3ilsmevc0g5lhmk26v.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

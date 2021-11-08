@@ -1,8 +1,16 @@
+import 'package:flutter/material.dart';
 import 'package:centro_actividades/routes/routes.dart';
 import 'package:centro_actividades/utils/constant.dart';
-import 'package:flutter/material.dart';
 
-void main() => runApp(MyApp());
+//firebase connection
+
+import 'package:firebase_core/firebase_core.dart';
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
   @override
