@@ -39,6 +39,13 @@ class _AssignmentCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return GestureDetector(
+      onTap: () {
+        Navigator.pushNamed(
+          context,
+          'typeLearning',
+          arguments: assignmentsBrain.getName(index),
+        );
+      },
       child: Container(
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10.0),
