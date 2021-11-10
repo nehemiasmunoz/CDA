@@ -1,5 +1,4 @@
 import 'package:centro_actividades/screen/assignments/models/logic/assignments_brain.dart';
-import 'package:centro_actividades/utils/constant.dart';
 import 'package:flutter/material.dart';
 
 class AssignmentsScreen extends StatelessWidget {
@@ -47,27 +46,35 @@ class _AssignmentCard extends StatelessWidget {
         );
       },
       child: Container(
+        height: size.height * 0.14,
+        margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
         decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10.0),
-            gradient:
-                LinearGradient(colors: [kPrimaryLightColor, kPrimaryColor])),
-        height: size.height * 0.15,
-        width: size.width * 0.8,
-        margin: EdgeInsets.symmetric(
-          vertical: 1.0,
-          horizontal: 5.0,
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(15.0),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.withOpacity(0.4),
+              spreadRadius: 3,
+              blurRadius: 5,
+              offset: Offset(0, 2.5),
+            ),
+          ],
         ),
-        padding: EdgeInsets.all(15.0),
-        child: Center(
-          child: Text(
-            assignmentsBrain.getName(index),
-            style: TextStyle(
-                fontSize: 17.0,
-                fontWeight: FontWeight.bold,
-                color: Colors.white),
-            overflow: TextOverflow.ellipsis,
-            maxLines: 2,
-            textAlign: TextAlign.center,
+        child: Container(
+          height: double.infinity,
+          width: double.infinity,
+          padding: EdgeInsets.symmetric(horizontal: 5.0),
+          child: Center(
+            child: Text(
+              assignmentsBrain.getName(index),
+              style: TextStyle(
+                fontSize: 20.0,
+                fontWeight: FontWeight.normal,
+              ),
+              overflow: TextOverflow.ellipsis,
+              maxLines: 2,
+              textAlign: TextAlign.center,
+            ),
           ),
         ),
       ),

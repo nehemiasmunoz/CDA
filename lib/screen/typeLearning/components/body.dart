@@ -20,6 +20,10 @@ class Body extends StatelessWidget {
 
   Container _buildCard(Size size, int index) {
     return Container(
+      constraints: BoxConstraints(minHeight: 100.0),
+      height: size.height * 0.14,
+      margin: EdgeInsets.all(10.0),
+      padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(15.0),
@@ -32,15 +36,18 @@ class Body extends StatelessWidget {
           ),
         ],
       ),
-      padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
-      margin: EdgeInsets.all(10.0),
       child: Row(
         children: [
           getIcon(learningBrain.getInfo(index)[1]),
           Spacer(),
-          Text(
-            learningBrain.getInfo(index)[0],
-            style: TextStyle(fontSize: 20.0),
+          Container(
+            width: 200.0,
+            child: Text(
+              learningBrain.getInfo(index)[0],
+              style: TextStyle(
+                fontSize: 20.0,
+              ),
+            ),
           ),
         ],
       ),
