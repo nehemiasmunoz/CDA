@@ -49,33 +49,27 @@ class _AssignmentCard extends StatelessWidget {
         height: size.height * 0.14,
         margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
         decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(5.0),
-            image: DecorationImage(
-              fit: BoxFit.cover,
-              image: NetworkImage('http://placekitten.com/300/200'),
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(15.0),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.withOpacity(0.4),
+              spreadRadius: 3,
+              blurRadius: 5,
+              offset: Offset(0, 2.5),
             ),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.grey,
-                blurRadius: 5.0,
-                offset: Offset(1, 2),
-              )
-            ]),
+          ],
+        ),
         child: Container(
           height: double.infinity,
           width: double.infinity,
           padding: EdgeInsets.symmetric(horizontal: 5.0),
-          decoration: BoxDecoration(
-            color: Colors.black45,
-            borderRadius: BorderRadius.circular(5.0),
-          ),
           child: Center(
             child: Text(
               assignmentsBrain.getName(index),
               style: TextStyle(
                 fontSize: 20.0,
                 fontWeight: FontWeight.normal,
-                color: Colors.white,
               ),
               overflow: TextOverflow.ellipsis,
               maxLines: 2,
