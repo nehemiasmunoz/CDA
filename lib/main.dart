@@ -1,4 +1,5 @@
 import 'package:centro_actividades/services/assignments_services.dart';
+import 'package:centro_actividades/services/learnings_services.dart';
 import 'package:flutter/material.dart';
 import 'package:centro_actividades/routes/routes.dart';
 import 'package:centro_actividades/utils/constant.dart';
@@ -21,7 +22,8 @@ class AppState extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (context) => AssignmentsServices())
+        ChangeNotifierProvider(create: (context) => AssignmentsServices()),
+        ChangeNotifierProvider(create: (context) => LearningServices())
       ],
       child: MyApp(),
     );
