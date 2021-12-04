@@ -12,7 +12,12 @@ class TypeLearningBody extends StatelessWidget {
     return ListView.builder(
       itemCount: learnings.length,
       itemBuilder: (BuildContext context, index) {
-        return _buildCard(size, index, learnings[index]);
+        return GestureDetector(
+            onTap: () {
+              Navigator.pushNamed(context, 'activities',
+                  arguments: learnings[index].name);
+            },
+            child: _buildCard(size, index, learnings[index]));
       },
     );
   }

@@ -1,5 +1,6 @@
 import 'dart:ui';
 import 'package:centro_actividades/screen/activities/models/logic/basic_activity_brain.dart';
+import 'package:centro_actividades/screen/widgets/widgets.dart';
 import 'package:centro_actividades/utils/constant.dart';
 import 'package:flutter/material.dart';
 
@@ -11,15 +12,15 @@ class ActivitiesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+
+    final typeLearning = ModalRoute.of(context)!.settings.arguments;
     return Scaffold(
       appBar: AppBar(
-        title: Text('Actividades'),
-        actions: [
-          IconButton(
-            onPressed: () {},
-            icon: Icon(Icons.reorder),
-          )
-        ],
+        title: Text(
+          'Actividades tipo $typeLearning',
+          overflow: TextOverflow.ellipsis,
+          maxLines: 1,
+        ),
       ),
       body: ListView.builder(
         itemCount: basicActivity.getLength(),
@@ -31,6 +32,7 @@ class ActivitiesScreen extends StatelessWidget {
           );
         },
       ),
+      endDrawer: DrawerActivities(),
     );
   }
 }
