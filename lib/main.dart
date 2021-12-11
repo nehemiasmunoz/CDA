@@ -1,5 +1,6 @@
-import 'package:centro_actividades/services/assignments_services.dart';
-import 'package:centro_actividades/services/learnings_services.dart';
+import 'package:centro_actividades/providers/providers.dart';
+import 'package:centro_actividades/screen/auth/wrapper.dart';
+import 'package:centro_actividades/services/services.dart';
 import 'package:flutter/material.dart';
 import 'package:centro_actividades/routes/routes.dart';
 import 'package:centro_actividades/utils/constant.dart';
@@ -23,7 +24,9 @@ class AppState extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context) => AssignmentsServices()),
-        ChangeNotifierProvider(create: (context) => LearningServices())
+        ChangeNotifierProvider(create: (context) => AuthService()),
+        ChangeNotifierProvider(create: (context) => LearningServices()),
+        ChangeNotifierProvider(create: (context) => LoginFormProvider()),
       ],
       child: MyApp(),
     );
@@ -36,7 +39,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Centro de Actividades',
-      initialRoute: 'login',
+      home: Wrapper(),
       routes: getAplicationRoutes(),
       theme: ThemeData.light().copyWith(
         primaryColor: kPrimaryColor,

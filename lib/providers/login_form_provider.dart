@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-class LoginFormProvider extends ChangeNotifier {
+class LoginFormProvider with ChangeNotifier {
   GlobalKey<FormState> formKey = GlobalKey();
 
   String email = '';
   String password = '';
-  bool isLoading = true;
+  //paso de focus
   bool emailValid = false;
 
   bool isValidateForm() {
@@ -26,7 +26,7 @@ class LoginFormProvider extends ChangeNotifier {
   }
 
   validatePassword(value) {
-    if (value == null || value.isEmpty || value.length < 4) {
+    if (value == null || value.isEmpty || value.length < 6) {
       return 'Por favor completa este campo';
     }
   }

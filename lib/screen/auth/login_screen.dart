@@ -1,5 +1,6 @@
 import 'package:centro_actividades/providers/providers.dart';
 import 'package:centro_actividades/screen/auth/components/rounded_container.dart';
+import 'package:centro_actividades/services/services.dart';
 import 'package:centro_actividades/utils/constant.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -9,7 +10,6 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-
     return GestureDetector(
       onTap: () {
         //ocultar el teclado al tocar la pantalla
@@ -79,7 +79,7 @@ class _CustomFormState extends State<_CustomForm> {
   @override
   Widget build(BuildContext context) {
     final loginForm = Provider.of<LoginFormProvider>(context);
-
+    final authService = Provider.of<AuthService>(context);
     return Form(
       autovalidateMode: AutovalidateMode.onUserInteraction,
       key: loginForm.formKey,
@@ -107,7 +107,7 @@ class _CustomFormState extends State<_CustomForm> {
             inputFormatters: [FilteringTextInputFormatter.digitsOnly],
             maxLines: 1,
             minLines: 1,
-            maxLength: 4,
+            maxLength: 6,
             obscureText: passwordVisibility,
             decoration: InputDecoration(
               hintText: 'Contraseña',
@@ -128,24 +128,35 @@ class _CustomFormState extends State<_CustomForm> {
           RoundedContainer(
             color: kPrimaryColor,
             child: TextButton(
-              child: Text(
-                'Ingresar'.toUpperCase(),
-                style: kLabelStyle.copyWith(
-                  color: Colors.white,
-                  fontSize: 17.0,
-                ),
-              ),
+              child: authService.isLoading
+                  ? CircularProgressIndicator()
+                  : Text(
+                      'Ingresar'.toUpperCase(),
+                      style: kLabelStyle.copyWith(
+                        color: Colors.white,
+                        fontSize: 17.0,
+                      ),
+                    ),
               onPressed: () {
                 if (loginForm.isValidateForm()) {
-                  // you'd often call a server or save the information in a database.
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(content: Text('Processing Data')),
-                  );
-                  Navigator.pushNamed(context, 'assignments');
+                  authService.signInWithEmailAndPassword(
+                      loginForm.email, loginForm.password);
                 }
               },
             ),
           ),
+          if (authService.errorMessage != null)
+            Container(
+              color: Colors.amberAccent,
+              child: ListTile(
+                title: Text(authService.errorMessage),
+                leading: Icon(Icons.error),
+                trailing: IconButton(
+                  icon: Icon(Icons.close),
+                  onPressed: () => authService.setMessage(null),
+                ),
+              ),
+            )
         ],
       ),
     );
