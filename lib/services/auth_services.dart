@@ -35,8 +35,8 @@ class AuthService extends ChangeNotifier {
     } on SocketException {
       setLoading(false);
       setMessage('Ups! Parece que te has quedado sin internet');
-    } catch (e) {
-      setMessage(e.toString());
+    } on auth.FirebaseAuthException catch (e) {
+      setMessage(e.message);
       print(e);
       setLoading(false);
     }
@@ -44,6 +44,7 @@ class AuthService extends ChangeNotifier {
   }
 
   Future<void> signOut() async {
+    notifyListeners();
     return await _firebaseAuth.signOut();
   }
 

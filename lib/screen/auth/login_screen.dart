@@ -145,7 +145,7 @@ class _CustomFormState extends State<_CustomForm> {
               },
             ),
           ),
-          if (authService.errorMessage != null)
+          if (authService.errorMessage != '')
             Container(
               color: Colors.amberAccent,
               child: ListTile(
@@ -153,7 +153,7 @@ class _CustomFormState extends State<_CustomForm> {
                 leading: Icon(Icons.error),
                 trailing: IconButton(
                   icon: Icon(Icons.close),
-                  onPressed: () => authService.setMessage(null),
+                  onPressed: () => authService.setMessage(''),
                 ),
               ),
             )
