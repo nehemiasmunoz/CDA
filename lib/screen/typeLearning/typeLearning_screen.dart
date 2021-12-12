@@ -1,5 +1,6 @@
 import 'package:centro_actividades/screen/loading/loading_screen.dart';
 import 'package:centro_actividades/screen/typeLearning/components/typeLearning_body.dart';
+import 'package:centro_actividades/screen/widgets/widgets.dart';
 import 'package:centro_actividades/services/services.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -20,7 +21,11 @@ class TypeLearningScreen extends StatelessWidget {
           ? LoadingScreen()
           : SafeArea(
               bottom: false,
-              child: TypeLearningBody(learnings: learnings.learningList)),
+              child: TypeLearningBody(
+                learnings: learnings.learningList,
+              ),
+            ),
+      endDrawer: DrawerActivities(),
     );
   }
 }

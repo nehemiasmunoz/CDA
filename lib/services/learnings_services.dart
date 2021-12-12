@@ -20,7 +20,6 @@ class LearningServices extends ChangeNotifier {
     var response = await http.get(url);
     if (response.statusCode == 200) {
       final Map<String, dynamic> jsonResponse = json.decode(response.body);
-      print(jsonResponse);
       // convirtiendo datos en una lista
       jsonResponse.forEach((key, value) {
         final tempData = LearningModel.fromMap(value);

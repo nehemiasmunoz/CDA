@@ -1,5 +1,6 @@
 import 'package:centro_actividades/screen/assignments/models/assigments_model.dart';
 import 'package:centro_actividades/screen/screens.dart';
+import 'package:centro_actividades/screen/widgets/widgets.dart';
 import 'package:centro_actividades/services/assignments_services.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -28,6 +29,7 @@ class AssignmentsScreen extends StatelessWidget {
           },
         ),
       ),
+      endDrawer: DrawerActivities(),
     );
   }
 }
