@@ -1,7 +1,4 @@
-import 'package:centro_actividades/screen/activities/activities_screen.dart';
-import 'package:centro_actividades/screen/assignments/assignments_screen.dart';
-import 'package:centro_actividades/screen/auth/login_screen.dart';
-import 'package:centro_actividades/screen/typeLearning/typeLearning_screen.dart';
+import 'package:centro_actividades/screen/screens.dart';
 import 'package:flutter/material.dart';
 
 Map<String, WidgetBuilder> getAplicationRoutes() {

@@ -1,12 +1,19 @@
-import 'package:centro_actividades/screen/assignments/models/logic/assignments_brain.dart';
+import 'package:centro_actividades/screen/assignments/models/assigments_model.dart';
+import 'package:centro_actividades/screen/screens.dart';
+import 'package:centro_actividades/screen/widgets/widgets.dart';
+import 'package:centro_actividades/services/assignments_services.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class AssignmentsScreen extends StatelessWidget {
   AssignmentsScreen({Key? key}) : super(key: key);
 
-  final AssignmentsBrain assignmentsBrain = AssignmentsBrain();
   @override
   Widget build(BuildContext context) {
+    final assignments = Provider.of<AssignmentsServices>(context);
+
+    if (assignments.isLoading) return LoadingScreen();
+
     return Scaffold(
       appBar: AppBar(
         title: Text('Asignaturas'),
@@ -14,26 +21,24 @@ class AssignmentsScreen extends StatelessWidget {
       body: Container(
         child: ListView.builder(
           shrinkWrap: true,
-          itemCount: assignmentsBrain.getLength(),
+          itemCount: assignments.assignmetsList.length,
           itemBuilder: (_, index) {
             return _AssignmentCard(
-                assignmentsBrain: assignmentsBrain, index: index);
+              assigment: assignments.assignmetsList[index],
+            );
           },
         ),
       ),
+      endDrawer: DrawerActivities(),
     );
   }
 }
 
 class _AssignmentCard extends StatelessWidget {
-  const _AssignmentCard({
-    Key? key,
-    required this.assignmentsBrain,
-    required this.index,
-  }) : super(key: key);
+  final AssignmentModel assigment;
 
-  final AssignmentsBrain assignmentsBrain;
-  final index;
+  const _AssignmentCard({Key? key, required this.assigment}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -42,7 +47,7 @@ class _AssignmentCard extends StatelessWidget {
         Navigator.pushNamed(
           context,
           'typeLearning',
-          arguments: assignmentsBrain.getName(index),
+          arguments: assigment.name,
         );
       },
       child: Container(
@@ -66,7 +71,7 @@ class _AssignmentCard extends StatelessWidget {
           padding: EdgeInsets.symmetric(horizontal: 5.0),
           child: Center(
             child: Text(
-              assignmentsBrain.getName(index),
+              assigment.name,
               style: TextStyle(
                 fontSize: 20.0,
                 fontWeight: FontWeight.normal,
