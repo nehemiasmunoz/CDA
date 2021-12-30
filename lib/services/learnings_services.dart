@@ -1,13 +1,12 @@
 import 'dart:convert';
-
-import 'package:centro_actividades/screen/typeLearning/models/typeLearning_model.dart';
+import 'package:centro_actividades/models/models.dart';
 import 'package:flutter/material.dart';
 
 import 'package:http/http.dart' as http;
 
 class LearningServices extends ChangeNotifier {
   final String baseUrl = 'cda-centrodeactividades-default-rtdb.firebaseio.com';
-  final List<LearningModel> learningList = [];
+  final List<LearningStyleModel> learningList = [];
   bool isLoading = true;
 
   LearningServices() {
@@ -15,17 +14,17 @@ class LearningServices extends ChangeNotifier {
   }
 
   _getLearnings() async {
-    final url = Uri.https(baseUrl, 'learnings.json');
+    final url = Uri.https(baseUrl, 'Learningstyle.json');
     // Await the http get response, then decode the json-formatted response.
     var response = await http.get(url);
     if (response.statusCode == 200) {
-      final Map<String, dynamic> jsonResponse = json.decode(response.body);
+      final List<dynamic> jsonResponse = json.decode(response.body);
       // convirtiendo datos en una lista
-      jsonResponse.forEach((key, value) {
-        final tempData = LearningModel.fromMap(value);
-        tempData.id = key;
+      jsonResponse.forEach((element) {
+        final tempData = LearningStyleModel.fromMap(element);
         learningList.add(tempData);
       });
+      print('learnings $learningList');
       // una vez tenemos los datos cambiamos el estado de carga a false
       isLoading = false;
       notifyListeners();

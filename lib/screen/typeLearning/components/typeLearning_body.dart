@@ -1,11 +1,11 @@
-import 'package:centro_actividades/screen/typeLearning/models/typeLearning_model.dart';
+import 'package:centro_actividades/models/models.dart';
 import 'package:flutter/material.dart';
 import 'package:centro_actividades/utils/icono_string.dart';
 
 class TypeLearningBody extends StatelessWidget {
   TypeLearningBody({Key? key, required this.learnings}) : super(key: key);
 
-  final List<LearningModel> learnings;
+  final List<LearningStyleModel> learnings;
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -22,7 +22,7 @@ class TypeLearningBody extends StatelessWidget {
     );
   }
 
-  Container _buildCard(Size size, int index, LearningModel learning) {
+  Container _buildCard(Size size, int index, LearningStyleModel learning) {
     return Container(
       constraints: BoxConstraints(minHeight: 100.0),
       height: size.height * 0.14,
