@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 Map<String, WidgetBuilder> getAplicationRoutes() {
   return <String, WidgetBuilder>{
     'login': (BuildContext context) => LoginScreen(),
-    'assignments': (BuildContext context) => AssignmentsScreen(),
+    'courses': (BuildContext context) => CoursesScreen(),
     'typeLearning': (BuildContext context) => TypeLearningScreen(),
     'activities': (BuildContext context) => ActivitiesScreen(),
   };

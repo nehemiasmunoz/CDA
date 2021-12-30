@@ -1,18 +1,18 @@
-import 'package:centro_actividades/screen/assignments/models/assigments_model.dart';
+import 'package:centro_actividades/models/models.dart';
 import 'package:centro_actividades/screen/screens.dart';
 import 'package:centro_actividades/screen/widgets/widgets.dart';
-import 'package:centro_actividades/services/assignments_services.dart';
+import 'package:centro_actividades/services/services.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class AssignmentsScreen extends StatelessWidget {
-  AssignmentsScreen({Key? key}) : super(key: key);
+class CoursesScreen extends StatelessWidget {
+  CoursesScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final assignments = Provider.of<AssignmentsServices>(context);
+    final courses = Provider.of<CoursesServices>(context);
 
-    if (assignments.isLoading) return LoadingScreen();
+    if (courses.isLoading) return LoadingScreen();
 
     return Scaffold(
       appBar: AppBar(
@@ -21,10 +21,10 @@ class AssignmentsScreen extends StatelessWidget {
       body: Container(
         child: ListView.builder(
           shrinkWrap: true,
-          itemCount: assignments.assignmetsList.length,
+          itemCount: courses.coursesList.length,
           itemBuilder: (_, index) {
-            return _AssignmentCard(
-              assigment: assignments.assignmetsList[index],
+            return _CourseCard(
+              assigment: courses.coursesList[index],
             );
           },
         ),
@@ -34,10 +34,10 @@ class AssignmentsScreen extends StatelessWidget {
   }
 }
 
-class _AssignmentCard extends StatelessWidget {
-  final AssignmentModel assigment;
+class _CourseCard extends StatelessWidget {
+  final CoursesModel assigment;
 
-  const _AssignmentCard({Key? key, required this.assigment}) : super(key: key);
+  const _CourseCard({Key? key, required this.assigment}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

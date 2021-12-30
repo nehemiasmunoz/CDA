@@ -15,7 +15,7 @@ class Wrapper extends StatelessWidget {
       builder: (_, AsyncSnapshot<User?> snapshot) {
         if (snapshot.connectionState == ConnectionState.active) {
           final User? user = snapshot.data;
-          return user == null ? LoginScreen() : AssignmentsScreen();
+          return user == null ? LoginScreen() : CoursesScreen();
         } else {
           return LoadingScreen();
         }

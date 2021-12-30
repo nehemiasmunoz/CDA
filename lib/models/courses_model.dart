@@ -4,19 +4,20 @@
 
 import 'dart:convert';
 
-class AssignmentModel {
-  AssignmentModel({
+class CoursesModel {
+  CoursesModel({
     required this.name,
   });
 
   String name;
   String? id;
-  factory AssignmentModel.fromJson(String str) =>
-      AssignmentModel.fromMap(json.decode(str));
+
+  factory CoursesModel.fromJson(String str) =>
+      CoursesModel.fromMap(json.decode(str));
 
   String toJson() => json.encode(toMap());
 
-  factory AssignmentModel.fromMap(Map<String, dynamic> json) => AssignmentModel(
+  factory CoursesModel.fromMap(Map<String, dynamic> json) => CoursesModel(
         name: json["name"],
       );
 
