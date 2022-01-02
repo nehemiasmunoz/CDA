@@ -26,6 +26,6 @@ class LearningStyleModel {
 
   Map<String, dynamic> toMap() => {
         "name": name,
-        "icon": icon == null ? null : icon,
+        "icon": icon,
       };
 }

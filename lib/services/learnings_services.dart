@@ -24,7 +24,6 @@ class LearningServices extends ChangeNotifier {
         final tempData = LearningStyleModel.fromMap(element);
         learningList.add(tempData);
       });
-      print('learnings $learningList');
       // una vez tenemos los datos cambiamos el estado de carga a false
       isLoading = false;
       notifyListeners();

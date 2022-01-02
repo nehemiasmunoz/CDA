@@ -1,3 +1,4 @@
+import 'package:centro_actividades/screen/activities/templates/basic_activity_template.dart';
 import 'package:centro_actividades/screen/screens.dart';
 import 'package:flutter/material.dart';
 
@@ -7,5 +8,6 @@ Map<String, WidgetBuilder> getAplicationRoutes() {
     'courses': (BuildContext context) => CoursesScreen(),
     'typeLearning': (BuildContext context) => TypeLearningScreen(),
     'activities': (BuildContext context) => ActivitiesScreen(),
+    'basicActivity': (_) => BasicActivity(),
   };
 }

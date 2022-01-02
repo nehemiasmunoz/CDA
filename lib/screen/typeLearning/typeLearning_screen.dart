@@ -12,7 +12,6 @@ class TypeLearningScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final learnings = Provider.of<LearningServices>(context);
-
     return Scaffold(
       appBar: AppBar(
         title: Text('Tipos de Aprendizajes'),

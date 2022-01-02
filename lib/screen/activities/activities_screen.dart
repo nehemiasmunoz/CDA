@@ -1,34 +1,34 @@
 import 'dart:ui';
-import 'package:centro_actividades/screen/activities/models/logic/basic_activity_brain.dart';
+import 'package:centro_actividades/models/activity_model.dart';
 import 'package:centro_actividades/screen/widgets/widgets.dart';
+import 'package:centro_actividades/services/activities_services.dart';
 import 'package:centro_actividades/utils/constant.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class ActivitiesScreen extends StatelessWidget {
   ActivitiesScreen({Key? key}) : super(key: key);
 
-  BasicActivityBrain basicActivity = BasicActivityBrain();
-
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-
-    final typeLearning = ModalRoute.of(context)!.settings.arguments;
+    final activities = Provider.of<ActivitiesServices>(context);
+    print(activities.activitiesList[0].id);
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'Actividades tipo $typeLearning',
+          'Actividades tipo ${activities.learningstyle}',
           overflow: TextOverflow.ellipsis,
           maxLines: 1,
         ),
       ),
       body: ListView.builder(
-        itemCount: basicActivity.getLength(),
+        itemCount: activities.activitiesList.length,
         itemBuilder: (BuildContext context, index) {
           return _buildCard(
             size: size,
             index: index,
-            data: basicActivity.getPreview(index),
+            data: activities.activitiesList,
           );
         },
       ),
@@ -47,15 +47,13 @@ class _buildCard extends StatelessWidget {
 
   final Size size;
   final int index;
-  final List data;
+  final List<ActivityModel> data;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        print(
-          data[0],
-        );
+        Navigator.pushNamed(context, 'basicActivity', arguments: data[index]);
       },
       child: Card(
         shape: RoundedRectangleBorder(
@@ -85,7 +83,7 @@ class _buildContent extends StatelessWidget {
     required this.data,
   }) : super(key: key);
 
-  final List data;
+  final List<ActivityModel> data;
 
   @override
   Widget build(BuildContext context) {
@@ -94,7 +92,7 @@ class _buildContent extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          data[0],
+          data[0].type,
           style: TextStyle(
             fontSize: 20.0,
             color: Colors.white,
@@ -102,7 +100,7 @@ class _buildContent extends StatelessWidget {
           ),
         ),
         Text(
-          data[1],
+          data[0].instructions,
           style: TextStyle(
             fontSize: 13.0,
             color: Colors.white,
