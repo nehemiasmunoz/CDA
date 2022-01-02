@@ -10,3 +10,8 @@ const kLabelStyle = TextStyle(
   fontSize: 26.0,
   fontWeight: FontWeight.bold,
 );
+
+//Activities variables
+
+const kNormalText = TextStyle(fontSize: 16.0);
+const kSubtitleText = TextStyle(fontSize: 17.0, fontWeight: FontWeight.bold);
