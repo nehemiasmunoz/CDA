@@ -1,7 +1,7 @@
-import 'dart:ui';
-import 'package:centro_actividades/models/activity_model.dart';
+import 'package:centro_actividades/models/models.dart';
+import 'package:centro_actividades/screen/screens.dart';
 import 'package:centro_actividades/screen/widgets/widgets.dart';
-import 'package:centro_actividades/services/activities_services.dart';
+import 'package:centro_actividades/services/services.dart';
 import 'package:centro_actividades/utils/constant.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -13,11 +13,11 @@ class ActivitiesScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     final activities = Provider.of<ActivitiesServices>(context);
-    print(activities.activitiesList[0].id);
+    if (activities.isLoading) return LoadingScreen();
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'Actividades tipo ${activities.learningstyle}',
+          'Actividades',
           overflow: TextOverflow.ellipsis,
           maxLines: 1,
         ),
@@ -70,7 +70,7 @@ class _buildCard extends StatelessWidget {
           padding: EdgeInsets.all(10.0),
           width: size.width * 1,
           height: size.height * 0.2,
-          child: _buildContent(data: data),
+          child: _buildContent(data: data, index: index),
         ),
       ),
     );
@@ -78,11 +78,9 @@ class _buildCard extends StatelessWidget {
 }
 
 class _buildContent extends StatelessWidget {
-  const _buildContent({
-    Key? key,
-    required this.data,
-  }) : super(key: key);
-
+  const _buildContent({Key? key, required this.data, required this.index})
+      : super(key: key);
+  final int index;
   final List<ActivityModel> data;
 
   @override
@@ -92,7 +90,7 @@ class _buildContent extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          data[0].type,
+          data[index].type,
           style: TextStyle(
             fontSize: 20.0,
             color: Colors.white,
@@ -100,7 +98,7 @@ class _buildContent extends StatelessWidget {
           ),
         ),
         Text(
-          data[0].instructions,
+          data[index].instructions,
           style: TextStyle(
             fontSize: 13.0,
             color: Colors.white,

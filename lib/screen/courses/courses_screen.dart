@@ -42,12 +42,10 @@ class _CourseCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    final activitiesReq =
-        Provider.of<ActivitiesServices>(context, listen: false);
-    activitiesReq.course = assigment.name;
     return GestureDetector(
       onTap: () {
-        activitiesReq.course = assigment.name;
+        Provider.of<ActivityQuery>(context, listen: false)
+            .changeCourse(assigment.name);
         Navigator.pushNamed(
           context,
           'typeLearning',

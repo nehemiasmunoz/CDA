@@ -1,6 +1,6 @@
 import 'package:centro_actividades/models/activity_model.dart';
+import 'package:centro_actividades/screen/activities/components/activity_content.dart';
 import 'package:centro_actividades/screen/activities/components/evidence_type.dart';
-import 'package:centro_actividades/utils/constant.dart';
 import 'package:flutter/material.dart';
 
 class BasicActivity extends StatelessWidget {
@@ -22,7 +22,7 @@ class BasicActivity extends StatelessWidget {
             child: Column(
               children: [
                 Text(
-                  dataActivity.type.toUpperCase(),
+                  dataActivity.title.toUpperCase(),
                   style: TextStyle(
                     fontSize: 14.0,
                     fontWeight: FontWeight.bold,
@@ -31,31 +31,8 @@ class BasicActivity extends StatelessWidget {
                 ),
                 //TODO: enviar tipos de aprendizajes que acepta la actividad
                 EvidenceTypeBar(),
-                Card(
-                  child: Container(
-                    padding: EdgeInsets.all(10.0),
-                    width: size.width * 1,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text('Descripcion', style: kSubtitleText),
-                        Text(
-                          dataActivity.description +
-                              ' ' +
-                              dataActivity.content[0].concept,
-                          style: kNormalText,
-                          textAlign: TextAlign.justify,
-                        ),
-                        Text('Instruciones', style: kSubtitleText),
-                        Text(
-                          dataActivity.instructions,
-                          style: kNormalText,
-                          textAlign: TextAlign.justify,
-                        )
-                      ],
-                    ),
-                  ),
-                ),
+
+                ActivityContent(data: dataActivity),
                 OutlinedButton.icon(
                   // permitira agregar la actividad actual a una lista de actividades pendientes
                   onPressed: () {},

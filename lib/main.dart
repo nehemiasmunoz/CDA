@@ -28,6 +28,7 @@ class AppState extends StatelessWidget {
         ChangeNotifierProvider(create: (context) => LearningServices()),
         ChangeNotifierProvider(create: (context) => LoginFormProvider()),
         ChangeNotifierProvider(create: (context) => ActivitiesServices()),
+        ChangeNotifierProvider(create: (_) => ActivityQuery()),
       ],
       child: MyApp(),
     );

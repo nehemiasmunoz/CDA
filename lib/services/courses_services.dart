@@ -18,7 +18,6 @@ class CoursesServices extends ChangeNotifier {
     var response = await http.get(url);
     if (response.statusCode == 200) {
       final List<dynamic> jsonResponse = json.decode(response.body);
-
       jsonResponse.forEach((element) {
         final tempData = CoursesModel.fromMap(element);
         coursesList.add(tempData);

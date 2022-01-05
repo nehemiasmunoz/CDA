@@ -11,14 +11,14 @@ class TypeLearningBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final activityReq = Provider.of<ActivitiesServices>(context, listen: false);
     final size = MediaQuery.of(context).size;
     return ListView.builder(
       itemCount: learnings.length,
       itemBuilder: (BuildContext context, index) {
         return GestureDetector(
             onTap: () {
-              activityReq.learningstyle = learnings[index].name;
+              Provider.of<ActivityQuery>(context, listen: false)
+                  .changeLearning(learnings[index].code);
               Navigator.pushNamed(context, 'activities');
             },
             child: _buildCard(size, index, learnings[index]));
