@@ -45,7 +45,7 @@ class _CourseCard extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         Provider.of<ActivityQuery>(context, listen: false)
-            .changeCourse(assigment.name);
+            .changeCourse(assigment.code);
         Navigator.pushNamed(
           context,
           'typeLearning',

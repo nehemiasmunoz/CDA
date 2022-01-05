@@ -1,4 +1,3 @@
-import 'package:centro_actividades/models/activities/activity_query.dart';
 import 'package:centro_actividades/models/models.dart';
 import 'package:flutter/material.dart';
 import 'dart:convert';
@@ -8,8 +7,10 @@ class ActivitiesServices extends ChangeNotifier {
   // Conexion a url de bd
   final String baseUrl = 'cda-centrodeactividades-default-rtdb.firebaseio.com';
   final List<ActivityModel> activitiesList = [];
+  List<ActivityModel> newActivities = [];
   bool isLoading = true;
-  final activityQuery = ActivityQuery();
+  String course = '';
+  String learning = '';
 
   ActivitiesServices() {
     _getActivities();
@@ -27,12 +28,25 @@ class ActivitiesServices extends ChangeNotifier {
         final tempData = ActivityModel.fromMap(element);
         activitiesList.add(tempData);
       });
-      print(activitiesList);
       isLoading = false;
       // notificacion a pantallas que necesitan los datos
       notifyListeners();
     } else {
       print('Request failed with status: ${response.statusCode}.');
     }
+  }
+
+  int index = 0;
+  List<ActivityModel> filterActivities(course, learning) {
+    newActivities = [];
+    activitiesList.forEach((element) {
+      if (element.codecourse == course &&
+          element.learningstyle[element.learningstyle.length - 1].code ==
+              learning) {
+        newActivities.add(element);
+      }
+    });
+    index++;
+    return newActivities;
   }
 }

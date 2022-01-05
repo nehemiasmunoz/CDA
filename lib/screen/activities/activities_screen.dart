@@ -12,7 +12,15 @@ class ActivitiesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    final activities = Provider.of<ActivitiesServices>(context);
+
+    final activities =
+        Provider.of<ActivityQuery>(context).callActivityServices(context);
+    final activityQuery = Provider.of<ActivityQuery>(context);
+
+    List<ActivityModel> newActivities = activities.filterActivities(
+        activityQuery.course, activityQuery.learning);
+
+    print(newActivities);
     if (activities.isLoading) return LoadingScreen();
     return Scaffold(
       appBar: AppBar(
@@ -22,16 +30,20 @@ class ActivitiesScreen extends StatelessWidget {
           maxLines: 1,
         ),
       ),
-      body: ListView.builder(
-        itemCount: activities.activitiesList.length,
-        itemBuilder: (BuildContext context, index) {
-          return _buildCard(
-            size: size,
-            index: index,
-            data: activities.activitiesList,
-          );
-        },
-      ),
+      body: activities.newActivities.length < 1
+          ? Center(
+              child: Text('Aun no hay actividades Asignadas'),
+            )
+          : ListView.builder(
+              itemCount: activities.newActivities.length,
+              itemBuilder: (BuildContext context, index) {
+                return _buildCard(
+                  size: size,
+                  index: index,
+                  data: activities.newActivities,
+                );
+              },
+            ),
       endDrawer: DrawerActivities(),
     );
   }
