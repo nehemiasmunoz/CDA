@@ -18,8 +18,24 @@ class ActivitiesScreen extends StatelessWidget {
     final activities =
         Provider.of<ActivityQuery>(context).callActivityServices(context);
     final activityQuery = Provider.of<ActivityQuery>(context);
-
     activities.filterActivities(activityQuery.course, activityQuery.learning);
+
+    //Animacion de items
+    var _listItems = <Widget>[];
+    final GlobalKey<AnimatedListState> _listKey = GlobalKey();
+
+    var future = Future(() {});
+
+    for (var i = 0; i < activities.newActivities.length; i++) {
+      future = future.then((_) {
+        return Future.delayed(Duration(milliseconds: 100), () {
+          _listItems.add(
+              _buildCard(size: size, index: i, data: activities.newActivities));
+          _listKey.currentState!.insertItem(i);
+        });
+      });
+    }
+
     if (activities.isLoading) return LoadingScreen();
     return Scaffold(
       appBar: AppBar(
@@ -38,16 +54,32 @@ class ActivitiesScreen extends StatelessWidget {
           ? Center(
               child: Text('Aun no hay actividades Asignadas'),
             )
-          : ListView.builder(
-              itemCount: activities.newActivities.length,
-              itemBuilder: (BuildContext context, index) {
-                return _buildCard(
-                  size: size,
-                  index: index,
-                  data: activities.newActivities,
+          : AnimatedList(
+              key: _listKey,
+              initialItemCount: _listItems.length,
+              itemBuilder: (_, index, animation) {
+                return SlideTransition(
+                  position: CurvedAnimation(
+                    curve: Curves.easeOut,
+                    parent: animation,
+                  ).drive((Tween<Offset>(
+                    begin: Offset(1, 0),
+                    end: Offset(0, 0),
+                  ))),
+                  child: _listItems[index],
                 );
-              },
-            ),
+              }),
+
+      // ListView.builder(
+      //     itemCount: activities.newActivities.length,
+      //     itemBuilder: (BuildContext context, index) {
+      //       return _buildCard(
+      //         size: size,
+      //         index: index,
+      //         data: activities.newActivities,
+      //       );
+      //     },
+      //   ),
       endDrawer: DrawerActivities(),
     );
   }

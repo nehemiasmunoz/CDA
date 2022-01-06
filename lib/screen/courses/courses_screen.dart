@@ -5,12 +5,32 @@ import 'package:centro_actividades/services/services.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class CoursesScreen extends StatelessWidget {
+class CoursesScreen extends StatefulWidget {
   CoursesScreen({Key? key}) : super(key: key);
 
   @override
+  State<CoursesScreen> createState() => _CoursesScreenState();
+}
+
+class _CoursesScreenState extends State<CoursesScreen> {
+  @override
   Widget build(BuildContext context) {
     final courses = Provider.of<CoursesServices>(context);
+
+    //Animacion de items
+    var _listItems = <Widget>[];
+    final GlobalKey<AnimatedListState> _listKey = GlobalKey();
+
+    var future = Future(() {});
+
+    for (var i = 0; i < courses.coursesList.length; i++) {
+      future = future.then((_) {
+        return Future.delayed(Duration(milliseconds: 100), () {
+          _listItems.add(_CourseCard(assigment: courses.coursesList[i]));
+          _listKey.currentState!.insertItem(i);
+        });
+      });
+    }
 
     if (courses.isLoading) return LoadingScreen();
 
@@ -24,16 +44,32 @@ class CoursesScreen extends StatelessWidget {
             }),
       ),
       body: Container(
-        child: ListView.builder(
-          shrinkWrap: true,
-          itemCount: courses.coursesList.length,
-          itemBuilder: (_, index) {
-            return _CourseCard(
-              assigment: courses.coursesList[index],
-            );
-          },
-        ),
-      ),
+          child: AnimatedList(
+              key: _listKey,
+              initialItemCount: _listItems.length,
+              itemBuilder: (_, index, animation) {
+                return SlideTransition(
+                  position: CurvedAnimation(
+                    curve: Curves.easeOut,
+                    parent: animation,
+                  ).drive((Tween<Offset>(
+                    begin: Offset(1, 0),
+                    end: Offset(0, 0),
+                  ))),
+                  child: _listItems[index],
+                );
+              })
+
+          // ListView.builder(
+          //   shrinkWrap: true,
+          //   itemCount: courses.coursesList.length,
+          //   itemBuilder: (_, index) {
+          //     return _CourseCard(
+          //       assigment: courses.coursesList[index],
+          //     );
+          //   },
+          // ),
+          ),
       endDrawer: DrawerActivities(),
     );
   }
