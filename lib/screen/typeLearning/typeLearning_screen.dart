@@ -15,6 +15,11 @@ class TypeLearningScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text('Tipos de Aprendizajes'),
+        leading: IconButton(
+            icon: Icon(Icons.arrow_back),
+            onPressed: () {
+              Navigator.pop(context);
+            }),
       ),
       body: learnings.isLoading
           ? LoadingScreen()

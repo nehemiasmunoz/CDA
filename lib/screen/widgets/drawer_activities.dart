@@ -30,12 +30,12 @@ class DrawerActivities extends StatelessWidget {
               color: kPrimaryColor,
             ),
             ListTile(
-              leading: Icon(
-                Icons.list,
-                color: Colors.amber,
-              ),
-              title: Text('Actividades Pendientes'),
-            ),
+                leading: Icon(
+                  Icons.list,
+                  color: Colors.amber,
+                ),
+                title: Text('Actividades Pendientes'),
+                onTap: () => Navigator.pushNamed(context, 'savedActivities')),
             Divider(
               color: kPrimaryColor,
             ),

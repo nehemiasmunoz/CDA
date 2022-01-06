@@ -1,6 +1,7 @@
 import 'package:centro_actividades/models/activity_model.dart';
 import 'package:centro_actividades/screen/activities/components/activity_content.dart';
 import 'package:centro_actividades/screen/activities/components/evidence_type.dart';
+import 'package:centro_actividades/screen/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 
 class BasicActivity extends StatelessWidget {
@@ -12,38 +13,59 @@ class BasicActivity extends StatelessWidget {
     final ActivityModel dataActivity =
         ModalRoute.of(context)!.settings.arguments as ActivityModel;
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        leading: IconButton(
+            icon: Icon(Icons.arrow_back),
+            onPressed: () {
+              Navigator.pop(context);
+            }),
+      ),
       body: SafeArea(
         child: Card(
           elevation: 2.0,
           margin: EdgeInsets.all(12.0),
-          child: Container(
-            width: size.width * 1,
-            child: Column(
-              children: [
-                Text(
-                  dataActivity.title.toUpperCase(),
-                  style: TextStyle(
-                    fontSize: 14.0,
-                    fontWeight: FontWeight.bold,
-                    leadingDistribution: TextLeadingDistribution.proportional,
+          child: SingleChildScrollView(
+            child: Container(
+              margin: EdgeInsets.symmetric(horizontal: 5.0),
+              width: size.width * 1,
+              child: Column(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 13.0),
+                    child: Text(
+                      dataActivity.title.toUpperCase(),
+                      style: TextStyle(
+                        fontSize: 15.0,
+                        fontWeight: FontWeight.bold,
+                        leadingDistribution:
+                            TextLeadingDistribution.proportional,
+                      ),
+                    ),
                   ),
-                ),
-                //TODO: enviar tipos de aprendizajes que acepta la actividad
-                EvidenceTypeBar(),
-
-                ActivityContent(data: dataActivity),
-                OutlinedButton.icon(
-                  // permitira agregar la actividad actual a una lista de actividades pendientes
-                  onPressed: () {},
-                  icon: Icon(Icons.add),
-                  label: Text('Agregar a la lista'),
-                )
-              ],
+                  EvidenceTypeBar(
+                    evidenceList: dataActivity.evidencetype,
+                  ),
+                  FadeInImage(
+                    height: 150.0,
+                    width: size.width * 9,
+                    fit: BoxFit.cover,
+                    placeholder: AssetImage('assets/loading.gif'),
+                    image: AssetImage(dataActivity.imagepath),
+                  ),
+                  ActivityContent(data: dataActivity),
+                  OutlinedButton.icon(
+                    // permitira agregar la actividad actual a una lista de actividades pendientes
+                    onPressed: () {},
+                    icon: Icon(Icons.add),
+                    label: Text('Agregar a la lista'),
+                  )
+                ],
+              ),
             ),
           ),
         ),
       ),
+      endDrawer: DrawerActivities(),
     );
   }
 }

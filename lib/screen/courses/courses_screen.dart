@@ -17,6 +17,11 @@ class CoursesScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text('Asignaturas'),
+        leading: IconButton(
+            icon: Icon(Icons.arrow_back),
+            onPressed: () {
+              Navigator.pop(context);
+            }),
       ),
       body: Container(
         child: ListView.builder(

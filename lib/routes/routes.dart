@@ -9,5 +9,6 @@ Map<String, WidgetBuilder> getAplicationRoutes() {
     'typeLearning': (BuildContext context) => TypeLearningScreen(),
     'activities': (BuildContext context) => ActivitiesScreen(),
     'basicActivity': (_) => BasicActivity(),
+    'savedActivities': (_) => SavedActivitiesScreen(),
   };
 }

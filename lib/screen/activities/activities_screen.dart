@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:centro_actividades/models/models.dart';
 import 'package:centro_actividades/screen/screens.dart';
 import 'package:centro_actividades/screen/widgets/widgets.dart';
@@ -17,10 +19,7 @@ class ActivitiesScreen extends StatelessWidget {
         Provider.of<ActivityQuery>(context).callActivityServices(context);
     final activityQuery = Provider.of<ActivityQuery>(context);
 
-    List<ActivityModel> newActivities = activities.filterActivities(
-        activityQuery.course, activityQuery.learning);
-
-    print(newActivities);
+    activities.filterActivities(activityQuery.course, activityQuery.learning);
     if (activities.isLoading) return LoadingScreen();
     return Scaffold(
       appBar: AppBar(
@@ -29,6 +28,11 @@ class ActivitiesScreen extends StatelessWidget {
           overflow: TextOverflow.ellipsis,
           maxLines: 1,
         ),
+        leading: IconButton(
+            icon: Icon(Icons.arrow_back),
+            onPressed: () {
+              Navigator.pop(context);
+            }),
       ),
       body: activities.newActivities.length < 1
           ? Center(
@@ -102,7 +106,11 @@ class _buildContent extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          data[index].type,
+          data[index].code,
+          style: TextStyle(color: Colors.white),
+        ),
+        Text(
+          data[index].title,
           style: TextStyle(
             fontSize: 20.0,
             color: Colors.white,
