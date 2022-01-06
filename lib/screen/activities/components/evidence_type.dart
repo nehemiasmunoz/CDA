@@ -1,7 +1,9 @@
 import 'package:centro_actividades/models/models.dart';
+import 'package:centro_actividades/services/services.dart';
 import 'package:centro_actividades/utils/constant.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:provider/provider.dart';
 
 class EvidenceTypeBar extends StatelessWidget {
   EvidenceTypeBar({Key? key, required this.evidenceList}) : super(key: key);
@@ -31,7 +33,10 @@ class EvidenceTypeBar extends StatelessWidget {
           children: [
             if (audio)
               IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  Provider.of<EvidenceQuery>(context, listen: false)
+                      .changeEvidence('AUD');
+                },
                 icon: FaIcon(
                   FontAwesomeIcons.microphone,
                   color: kPrimaryColor,
@@ -39,7 +44,10 @@ class EvidenceTypeBar extends StatelessWidget {
               ),
             if (text)
               IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  Provider.of<EvidenceQuery>(context, listen: false)
+                      .changeEvidence('TE');
+                },
                 icon: FaIcon(
                   FontAwesomeIcons.fileAlt,
                   color: kPrimaryColor,
@@ -47,7 +55,10 @@ class EvidenceTypeBar extends StatelessWidget {
               ),
             if (video)
               IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  Provider.of<EvidenceQuery>(context, listen: false)
+                      .changeEvidence('VI');
+                },
                 icon: FaIcon(
                   FontAwesomeIcons.video,
                   color: kPrimaryColor,
@@ -55,7 +66,10 @@ class EvidenceTypeBar extends StatelessWidget {
               ),
             if (imagen)
               IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  Provider.of<EvidenceQuery>(context, listen: false)
+                      .changeEvidence('IM');
+                },
                 icon: FaIcon(
                   FontAwesomeIcons.image,
                   color: kPrimaryColor,
@@ -63,7 +77,10 @@ class EvidenceTypeBar extends StatelessWidget {
               ),
             if (auto)
               IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  Provider.of<EvidenceQuery>(context, listen: false)
+                      .changeEvidence('AU');
+                },
                 icon: FaIcon(
                   FontAwesomeIcons.robot,
                   color: kPrimaryColor,

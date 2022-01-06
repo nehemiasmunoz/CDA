@@ -1,3 +1,4 @@
+import 'package:centro_actividades/models/models.dart';
 import 'package:centro_actividades/providers/providers.dart';
 // import 'package:centro_actividades/screen/auth/wrapper.dart';
 import 'package:centro_actividades/services/services.dart';
@@ -29,6 +30,7 @@ class AppState extends StatelessWidget {
         ChangeNotifierProvider(create: (context) => LoginFormProvider()),
         ChangeNotifierProvider(create: (context) => ActivitiesServices()),
         ChangeNotifierProvider(create: (_) => ActivityQuery()),
+        ChangeNotifierProvider(create: (_) => EvidenceQuery()),
       ],
       child: MyApp(),
     );

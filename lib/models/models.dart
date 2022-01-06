@@ -6,3 +6,4 @@ export 'package:centro_actividades/models/activities/taxonomiclevel_model.dart';
 export 'package:centro_actividades/models/activities/evidencetype_model.dart';
 export 'package:centro_actividades/models/activities/content_model.dart';
 export 'package:centro_actividades/models/activities/alternatives_model.dart';
+export 'package:centro_actividades/models/activities/evidence_query.dart';

@@ -1,8 +1,11 @@
+import 'package:centro_actividades/models/activities/evidence_query.dart';
 import 'package:centro_actividades/models/activity_model.dart';
 import 'package:centro_actividades/screen/activities/components/activity_content.dart';
+import 'package:centro_actividades/screen/activities/components/button_resource.dart';
 import 'package:centro_actividades/screen/activities/components/evidence_type.dart';
 import 'package:centro_actividades/screen/widgets/widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class BasicActivity extends StatelessWidget {
   const BasicActivity({Key? key}) : super(key: key);
@@ -53,6 +56,8 @@ class BasicActivity extends StatelessWidget {
                     image: AssetImage(dataActivity.imagepath),
                   ),
                   ActivityContent(data: dataActivity),
+                  if (Provider.of<EvidenceQuery>(context).evidence != 'AU')
+                    ButtonResource(),
                   OutlinedButton.icon(
                     // permitira agregar la actividad actual a una lista de actividades pendientes
                     onPressed: () {},
