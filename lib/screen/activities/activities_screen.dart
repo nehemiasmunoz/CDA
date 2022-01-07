@@ -110,9 +110,10 @@ class _buildCard extends StatelessWidget {
         margin: EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),
         child: Container(
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.all(Radius.circular(20.0)),
-            gradient: LinearGradient(
-              colors: [kPrimaryColor, kPrimaryLightColor],
+            image: DecorationImage(
+                image: AssetImage(data[index].imagepath), fit: BoxFit.fill),
+            borderRadius: BorderRadius.all(
+              Radius.circular(20.0),
             ),
           ),
           padding: EdgeInsets.all(10.0),
@@ -137,23 +138,44 @@ class _buildContent extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.end,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          data[index].code,
-          style: TextStyle(color: Colors.white),
-        ),
-        Text(
-          data[index].title,
-          style: TextStyle(
-            fontSize: 20.0,
-            color: Colors.white,
-            fontWeight: FontWeight.bold,
+        // Container(
+        //   padding: EdgeInsets.all(5.0),
+        //   decoration: BoxDecoration(
+        //     borderRadius: BorderRadius.circular(5.0),
+        //     color: Colors.blue[900],
+        //   ),
+        //   child: Text(
+        //     data[index].code,
+        //     style: TextStyle(color: Colors.white),
+        //   ),
+        // ),
+        Container(
+          padding: EdgeInsets.all(5.0),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(5.0),
+            color: Colors.blue[900],
+          ),
+          child: Text(
+            data[index].content[0].concept,
+            style: TextStyle(
+              fontSize: 20.0,
+              color: Colors.white,
+              fontWeight: FontWeight.bold,
+            ),
           ),
         ),
-        Text(
-          data[index].instructions,
-          style: TextStyle(
-            fontSize: 13.0,
-            color: Colors.white,
+        Container(
+          padding: EdgeInsets.all(5.0),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(5.0),
+            color: Colors.blue[900],
+          ),
+          child: Text(
+            data[index].title,
+            style: TextStyle(
+              fontSize: 16.0,
+              color: Colors.white,
+            ),
           ),
         ),
       ],

@@ -38,20 +38,20 @@ class _ButtonResourceState extends State<ButtonResource> {
                   size: 27.0,
                 ),
                 TextButton(
-                    onPressed: () async {
-                      final result = await FilePicker.platform.pickFiles();
-                      if (result != null) {
-                        PlatformFile file = result.files.first;
-                        //Open single file
-                        fileName = file.name;
-                        fileSize = file.size / 1024;
-
-                        print(fileName);
-                        print('file.${file.name}');
-                        //openFile(file);
-                        //final newFile = await saveFilePermanently(file);
-                      }
-                    },
+                    onPressed: () {},
+                    // onPressed: () async {
+                    //   final result = await FilePicker.platform.pickFiles();
+                    //   if (result != null) {
+                    //     PlatformFile file = result.files.first;
+                    //     //Open single file
+                    //     fileName = file.name;
+                    //     fileSize = file.size / 1024;
+                    //     print(fileName);
+                    //     print('file.${file.name}');
+                    //     //openFile(file);
+                    //     //final newFile = await saveFilePermanently(file);
+                    //   }
+                    // },
                     child: Text('Subir archivo',
                         style: TextStyle(color: Colors.white, fontSize: 16.0))),
               ],

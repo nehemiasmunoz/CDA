@@ -17,6 +17,7 @@ class BasicActivity extends StatelessWidget {
         ModalRoute.of(context)!.settings.arguments as ActivityModel;
     return Scaffold(
       appBar: AppBar(
+        title: Text(dataActivity.code),
         leading: IconButton(
             icon: Icon(Icons.arrow_back),
             onPressed: () {
